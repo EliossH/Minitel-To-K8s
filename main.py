@@ -3,6 +3,7 @@ from faas_interface.faas_interface import FaaSInterface
 
 
 def main():
+
     connector = SerialConnector(port="/tmp/ttyV0")
     connector.start()
     
