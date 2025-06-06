@@ -1,9 +1,9 @@
-from connector.windows_serial_connector import SerialConnector
+from connector.serial_connector import SerialConnector
 from faas_interface.faas_interface import FaaSInterface
 
 
 def main():
-    connector = SerialConnector(port="COM11")
+    connector = SerialConnector(port="/tmp/ttyV0")
     connector.start()
     
     minitel = FaaSInterface(connector)
