@@ -7,13 +7,14 @@ class Interface(Widget):
 
     def render(self):
         output = self.get_static_frame()
+        print("output",output, type(output))
         output += super().render()
         return output
 
     def get_static_frame(self):
         if self.background_path:
             try:
-                with open(self.background_path, "r", encoding="utf-8") as file:
+                with open(self.background_path, "rb") as file:
                     return file.read()
             except Exception as e:
                 return f"[Erreur chargement fond: {e}]"

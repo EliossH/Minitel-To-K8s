@@ -51,13 +51,11 @@ class SerialConnector:
             time.sleep(0.1)
 
     def send_data(self, data):
-        """Send string data over the serial port."""
-        if not isinstance(data, str):
-            raise ValueError("Data must be a string.")
+        """Send bytes data over the serial port."""
         try:
             if self.serial_connection and self.serial_connection.is_open:
-                print(data)
-                self.serial_connection.write(data.encode('utf-8'))
+                print(data.hex())
+                self.serial_connection.write(data)
             else:
                 print("[WARN] Serial port is not open.")
         except serial.SerialException as e:

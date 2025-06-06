@@ -30,7 +30,7 @@ class Widget:
         self.widgets.append(widget)
 
     def render(self):
-        result = ""
+        result = bytes()
         for widget in self.widgets:
             if widget.visible:
                 result += widget.render()

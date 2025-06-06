@@ -20,4 +20,4 @@ class Text(Widget):
         if self.inverted:
             output += bytes([0x0E])  # Fin inversion
         print(output.hex())
-        return output.decode('latin-1')
+        return output
