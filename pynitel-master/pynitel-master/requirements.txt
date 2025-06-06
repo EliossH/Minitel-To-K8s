@@ -1,5 +1,0 @@
-pyserial
-beautifulsoup4
-lxml
-requests
-Mastodon.py
