@@ -1,6 +1,7 @@
 from pyminitel.minitelinterface import MinitelInterfaces
 from pyminitel.interface import Interface
 from pyminitel.menu import Menu
+from faas_interface.function_menu import FunctionMenu
 from config.settings import exec_path
 import os
 
@@ -14,10 +15,7 @@ FaaSInterface.add_interface(functionListInterface)
 
 mainInterfaceMenu = Menu(
     options=[
-        {"text":"Liste des fonctions déployées","callback":lambda:FaaSInterface.set_active(functionListInterface)},
-        {"text":"test1","callback":lambda:print("test1")},
-        {"text":"test2","callback":lambda:print("test2")},
-        {"text":"test3","callback":lambda:print("test3")}
+        {"text":"Liste des fonctions","callback":lambda:FaaSInterface.set_active(functionListInterface)},
     ],
     x=2,
     y=8,
@@ -27,6 +25,9 @@ mainInterfaceMenu = Menu(
     font_color=4
 )
 mainInterface.add_widget(mainInterfaceMenu)
+
+functionMenu = FunctionMenu()
+functionListInterface.add_widget(functionMenu)
 
 """
 class FaaSInterface(MinitelInterfaces):

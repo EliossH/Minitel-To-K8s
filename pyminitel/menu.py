@@ -39,10 +39,5 @@ class Menu(Widget):
         to_render = self.widgets[new_index].render() + self.widgets[old_index].render()
         self.update(to_render)
 
-    
-
-    def on_select(self, index):
-        print(index)
-
     def get_selected(self):
         return self.focused_widget.text if self.focused_widget else None
