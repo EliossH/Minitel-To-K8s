@@ -1,10 +1,13 @@
 from pyminitel.minitelinterface import MinitelInterfaces
-from faas_interface.main_interface import MainInterface
+from pyminitel.interface import Interface
 from pyminitel.menu import Menu
+from config.settings import exec_path
+import os
 
 FaaSInterface = MinitelInterfaces()
 
-mainInterface = MainInterface()
+mainInterface = Interface(background_path=os.path.join(exec_path,"faas_interface","asset","main_background.vdt"))
+functionListInterface = Interface(background_path=os.path.join(exec_path,"faas_interface","asset","main_background.vdt"))
 
 FaaSInterface.add_interface(mainInterface)
 
