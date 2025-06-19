@@ -4,7 +4,7 @@ from faas_interface.faas_interface import FaaSInterface
 
 def main():
 
-    connector = SerialConnector(port="/tmp/ttyV0")
+    connector = SerialConnector(port="/dev/ttyS0")
     connector.start()
     
     minitel = FaaSInterface(connector)

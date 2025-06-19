@@ -7,7 +7,6 @@ class Interface(Widget):
 
     def render(self):
         output = self.get_static_frame()
-        print("output",output, type(output))
         output += super().render()
         return output
 
@@ -17,5 +16,5 @@ class Interface(Widget):
                 with open(self.background_path, "rb") as file:
                     return file.read()
             except Exception as e:
-                return f"[Erreur chargement fond: {e}]"
+                print(f"[Erreur chargement fond: {e}]")
         return b"No background set"

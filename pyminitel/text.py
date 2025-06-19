@@ -1,23 +1,22 @@
 from pyminitel.widget import Widget
 
 class Text(Widget):
-    def __init__(self, text, x=0, y=0, inverted=False, color=None):
+    def __init__(self, text, x=1, y=1, inverted=False, font_color=7, bg_color=0):
         super().__init__()
         self.text = text
         self.inverted = inverted
-        self.color = color
+        self.bg_color=bg_color
+        self.font_color=font_color
         self.x = x
         self.y = y
 
     def render(self):
-        output = bytes([0x1F, 0x28 + self.x, 0x28 + self.y])  # Positionne le curseur
-        print(output.hex())
+        output = bytes([0x1F, 64 + self.y, 64 + self.x])  # Positionne le curseur
+        output += bytes([0x1B, 80 + self.bg_color]) # Mets la bonne couleur de fond
+        output += bytes([0x1B, 64 + self.font_color]) # Mets la bonne couleur de texte
         if self.inverted:
-            output += bytes([0x0F])  # Inversion des couleurs
-        if self.color is not None:
-            output += bytes([0x1B, 0x40 + self.color])  # Code couleur (à adapter)
+            output += bytes([0x1B, 0x5D])
         output += self.text.encode("latin-1")
-        if self.inverted:
-            output += bytes([0x0E])  # Fin inversion
+
         print(output.hex())
         return output

@@ -3,7 +3,7 @@ import threading
 import time
 
 class SerialConnector:
-    def __init__(self, port, baudrate=4800, timeout=1):
+    def __init__(self, port, baudrate=1200, timeout=1):
         self.port = port
         self.baudrate = baudrate
         self.timeout = timeout
@@ -18,7 +18,9 @@ class SerialConnector:
             self.serial_connection = serial.Serial(
                 port=self.port,
                 baudrate=self.baudrate,
-                timeout=self.timeout
+                bytesize=serial.SEVENBITS,
+                parity=serial.PARITY_EVEN,
+                stopbits=serial.STOPBITS_ONE
             )
             self.running = True
             threading.Thread(target=self.read_data, daemon=True).start()

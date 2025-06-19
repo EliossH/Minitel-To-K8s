@@ -2,16 +2,25 @@ from pyminitel.widget import Widget
 from pyminitel.text import Text
 
 class Menu(Widget):
-    def __init__(self, labels, x=0, y=0, length=10, selected_index=0):
+    def __init__(self, labels, x=0, y=0, length=10, selected_index=0, font_color=7, bg_color=0):
         super().__init__()
         self.x = x
         self.y = y
+        self.bg_color=bg_color
+        self.font_color=font_color
+        self.selected_index=selected_index
 
         for i, label in enumerate(labels):
-            string_widget = Text(label, x=self.x, y=self.y + i)
+            string_widget = Text(label, x=self.x, y=self.y + i, font_color=self.font_color, bg_color=self.bg_color)
             self.add_widget(string_widget)
-        self.set_focus(self.widgets[selected_index])
+        self.set_focus(self.widgets[self.selected_index])
 
+    def set_focus(self, widget):
+        if self.focused_widget:
+            self.focused_widget.inverted=False
+        super().set_focus(widget)
+        self.focused_widget.inverted=True
+        
     def update_display(self):
         for widget in self.widgets:
             widget.inverted = (widget == self.focused_widget)

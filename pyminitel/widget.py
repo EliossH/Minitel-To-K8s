@@ -5,6 +5,8 @@ class Widget:
         self.parent = None
         self.focused_widget = None
         self.root = None
+        self.bg_color=0
+        self.font_color=7
 
     def update(self, bits):
         if self.root:
