@@ -16,9 +16,6 @@ FaaSInterface.add_interface(functionListInterface)
 mainInterfaceMenu = Menu(
     options=[
         {"text":"Liste des fonctions","callback":lambda:FaaSInterface.set_active(functionListInterface)},
-        {"text":"test1","callback":lambda:print("test1")},
-        {"text":"test2","callback":lambda:print("test2")},
-        {"text":"test3","callback":lambda:print("test3")}
     ],
     x=2,
     y=8,
