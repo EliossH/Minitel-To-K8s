@@ -1,8 +1,7 @@
 class MinitelInterfaces:
-    def __init__(self, connector):
-        self.connector = connector
-        self.send_data = self.connector.send_data
-        self.connector.set_receive_callback(self.handle_input)
+    def __init__(self):
+        self.connector = None
+        self.send_data = None
         self.debug = False
         self.interfaces = []
         self.current_interface = None
@@ -11,7 +10,12 @@ class MinitelInterfaces:
         interface.root = self
         self.interfaces.append(interface)
         if self.current_interface is None:
-            self.set_active(interface)
+            self.current_interface = interface
+    
+    def set_connector(self, connector):
+        self.connector=connector
+        self.send_data = connector.send_data
+        self.connector.set_receive_callback(self.handle_input)
 
     def set_active(self, interface):
         self.current_interface = interface

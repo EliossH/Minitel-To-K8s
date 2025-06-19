@@ -11,6 +11,8 @@ class Widget:
     def update(self, bits):
         if self.root:
             self.root.send_update(bits)
+        else :
+            print("self.root undefined")
 
     def handle_input(self, char):
         if self.focused_widget:
@@ -30,6 +32,8 @@ class Widget:
         widget.parent = self
         widget.root = self.root
         self.widgets.append(widget)
+        if self.focused_widget is None:
+            self.focused_widget = widget
 
     def render(self):
         result = bytes()

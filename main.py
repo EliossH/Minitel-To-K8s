@@ -7,10 +7,10 @@ def main():
     connector = SerialConnector(port="/dev/ttyS0")
     connector.start()
     
-    minitel = FaaSInterface(connector)
+    FaaSInterface.set_connector(connector)
     input("Press Enter to start the Minitel interface...")
 
-    minitel.start()
+    FaaSInterface.start()
 
     try:
         while True:

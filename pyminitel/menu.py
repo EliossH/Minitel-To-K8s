@@ -20,26 +20,27 @@ class Menu(Widget):
             self.focused_widget.inverted=False
         super().set_focus(widget)
         self.focused_widget.inverted=True
-        
-    def update_display(self):
-        for widget in self.widgets:
-            widget.inverted = (widget == self.focused_widget)
 
     def handle_input(self, char):
-        if char == "B":  # UP arrow
-            idx = self.widgets.index(self.focused_widget)
-            idx = (idx - 1) % len(self.widgets)
-            self.set_focus(self.widgets[idx])
-            self.update_display()
-            self.update(self.render())
-        elif char == "H":  # DOWN arrow
-            idx = self.widgets.index(self.focused_widget)
-            idx = (idx + 1) % len(self.widgets)
-            self.set_focus(self.widgets[idx])
-            self.update_display()
-            self.update(self.render())
-        elif char == "\n":  # ENTER
-            self.on_select(self.widgets.index(self.focused_widget))
+        if char == "A":
+            print('UP !')
+            self.change_selection(-1)
+        elif char == "Q":
+            print("DOWN !")
+            self.change_selection(1)
+        else :
+            super().handle_input(char)
+    
+    def change_selection(self, dx):
+        old_index = self.selected_index
+        new_index = (self.selected_index+dx)%len(self.widgets)
+        print(old_index, dx, new_index)
+        self.set_focus(self.widgets[new_index])
+        self.selected_index = new_index
+        to_render = self.widgets[new_index].render() + self.widgets[old_index].render()
+        self.update(to_render)
+
+    
 
     def on_select(self, index):
         print(index)

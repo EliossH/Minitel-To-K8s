@@ -56,7 +56,7 @@ class SerialConnector:
         """Send bytes data over the serial port."""
         try:
             if self.serial_connection and self.serial_connection.is_open:
-                print(data.hex())
+                print("Sending :", data.hex())
                 self.serial_connection.write(data)
             else:
                 print("[WARN] Serial port is not open.")
