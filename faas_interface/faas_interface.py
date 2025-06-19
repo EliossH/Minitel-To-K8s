@@ -7,12 +7,14 @@ import os
 FaaSInterface = MinitelInterfaces()
 
 mainInterface = Interface(background_path=os.path.join(exec_path,"faas_interface","asset","main_background.vdt"))
-functionListInterface = Interface(background_path=os.path.join(exec_path,"faas_interface","asset","main_background.vdt"))
+functionListInterface = Interface(background_path=os.path.join(exec_path,"faas_interface","asset","function_list.vdt"))
 
-FaaSInterface.add_interface(mainInterface)
+FaaSInterface.add_interface(mainInterface, main=True)
+FaaSInterface.add_interface(functionListInterface)
 
 mainInterfaceMenu = Menu(
     options=[
+        {"text":"Liste des fonctions déployées","callback":lambda:FaaSInterface.set_active(functionListInterface)},
         {"text":"test1","callback":lambda:print("test1")},
         {"text":"test2","callback":lambda:print("test2")},
         {"text":"test3","callback":lambda:print("test3")}
