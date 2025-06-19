@@ -1,8 +1,8 @@
 from pyminitel.widget import Widget
 
 class Text(Widget):
-    def __init__(self, text, x=1, y=1, inverted=False, font_color=7, bg_color=0):
-        super().__init__()
+    def __init__(self, text, callback=lambda: print("No callback set"), x=1, y=1, inverted=False, font_color=7, bg_color=0):
+        super().__init__(callback=callback)
         self.text = text
         self.inverted = inverted
         self.bg_color=bg_color
@@ -17,6 +17,4 @@ class Text(Widget):
         if self.inverted:
             output += bytes([0x1B, 0x5D])
         output += self.text.encode("latin-1")
-
-        print(output.hex())
         return output

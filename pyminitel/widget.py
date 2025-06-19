@@ -1,5 +1,5 @@
 class Widget:
-    def __init__(self):
+    def __init__(self, callback=lambda: print("No callback set")):
         self.visible = True
         self.widgets = []
         self.parent = None
@@ -7,6 +7,7 @@ class Widget:
         self.root = None
         self.bg_color=0
         self.font_color=7
+        self.callback = callback
 
     def update(self, bits):
         if self.root:
@@ -41,3 +42,6 @@ class Widget:
             if widget.visible:
                 result += widget.render()
         return result
+    
+    def execute(self):
+        return self.callback()

@@ -46,6 +46,7 @@ class SerialConnector:
                         self.serial_connection.in_waiting
                     ).decode('utf-8', errors='ignore')
                     if self.external_receive_callback:
+                        print("Received :", data)
                         self.external_receive_callback(data)
             except serial.SerialException as e:
                 print(f"[ERROR] Error reading from serial port: {e}")
