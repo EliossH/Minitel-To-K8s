@@ -1,14 +1,14 @@
 from connector.serial_connector import SerialConnector
 from faas_interface.faas_interface import FaaSInterface
+from config.settings import serial_port
 
 
 def main():
 
-    connector = SerialConnector(port="/dev/ttyS0")
+    connector = SerialConnector(port=serial_port)
     connector.start()
     
     FaaSInterface.set_connector(connector)
-    input("Press Enter to start the Minitel interface...")
 
     FaaSInterface.start()
 
